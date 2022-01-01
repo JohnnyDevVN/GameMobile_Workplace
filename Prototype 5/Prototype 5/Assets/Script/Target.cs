@@ -11,7 +11,6 @@ public class Target : MonoBehaviour
     private float xRange =4f;
     private float ySpawnPos = -6f;
     public bool isBadObject;
-
     public int pointValue;
 
     public ParticleSystem explosionParticle;
@@ -22,7 +21,7 @@ public class Target : MonoBehaviour
     {
         targetRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(),RandomTorque(),RandomTorque(), ForceMode.Impulse);
 
@@ -33,6 +32,7 @@ public class Target : MonoBehaviour
     {   
         if(gameManager.isGameActive)
         {
+            gameManager.Sound.PlayOneShot(gameManager.shootSound,1f);
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);
@@ -40,8 +40,16 @@ public class Target : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        gameManager.GameOver(isBadObject);
+        if(other.CompareTag("DeadZone"))
+        {
+            Destroy(gameObject);
+            if(gameManager.isGameActive&&!isBadObject)
+            {
+                gameManager.Sound.PlayOneShot(gameManager.dieSound,1f);
+                //triggerDieSound=false;
+            }
+            gameManager.GameOver(isBadObject);
+        }    
     }
     Vector3 RandomForce()
     {

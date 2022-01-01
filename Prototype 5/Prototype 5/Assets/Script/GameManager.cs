@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
 public class GameManager : MonoBehaviour
 {
@@ -39,14 +42,18 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public GameObject titleScreen;
     public GameObject gameOverScreen;
+    public GameObject quitButton;
     public int score;
+    public AudioClip shootSound;
+    public AudioClip dieSound;
+    public AudioSource Sound;
     public bool isGameActive;
     private float spawnRate = 1f;
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        quitButton = GameObject.Find("QuitButton");
+        Sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -82,6 +89,7 @@ public class GameManager : MonoBehaviour
         {
             gameOverScreen.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
+            quitButton.gameObject.SetActive(true);
 
             isGameActive = false;
         }
@@ -95,10 +103,20 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
         titleScreen.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Get name is String or can use "Prototype 5" instead
+    }
+
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }
