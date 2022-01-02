@@ -49,10 +49,12 @@ public class GameManager : MonoBehaviour
     public AudioClip dieSound;
     public AudioClip crashSound;
     public AudioSource Sound;
+    public RawImage[] heart;
     public bool isGameActive;
     private float spawnRate = 1f;
     int randNum;
     int num;
+    public int life;
     Target targetScript;
 
     // Start is called before the first frame update
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         quitButton = GameObject.Find("QuitButton");
         Sound = GetComponent<AudioSource>();
+        life =3;
     }
 
     // Update is called once per frame
@@ -67,10 +70,31 @@ public class GameManager : MonoBehaviour
     {
         randNum = Random.Range(1,4);
         StartCoroutine(OnTapping());
-        if(score<0) 
+        
+        if(score<0&&life>0)
         {
-            Debug.Log("Bad Score, Game Over!");
-            GameOver(false);
+            life-=1;
+            score = 0;
+            UpdateScore(0);
+        }
+
+        //Display heart
+        if(life==2)
+        {
+            heart[2].gameObject.SetActive(false);
+        }
+        if(life==1)
+        {
+            heart[1].gameObject.SetActive(false);
+        }
+        if(life==0)
+        {
+            heart[0].gameObject.SetActive(false);
+        }
+        
+        if(life<=0) 
+        {
+            GameOver(true);
         }
     }
 
@@ -110,30 +134,13 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
-    //     if(target[num]==target[0])
-    //     {
-    //         scoreToAdd = -20;
-    //     }
-    //     else if(target[num]==target[1])
-    //     {
-    //         scoreToAdd = 3;
-    //     }
-    //     else if(target[num]==target[2])
-    //     {
-    //         scoreToAdd = 5;
-    //     }
-    //     else if(target[num]==target[3])
-    //     {
-    //         scoreToAdd = 8;
-    //     }
-
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
-    public void GameOver(bool isBad)
+    public void GameOver(bool isOver)
     {
-        if(!isBad) 
+        if(isOver&&life<=0) 
         {
             gameOverScreen.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);

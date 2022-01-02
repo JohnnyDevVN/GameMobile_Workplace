@@ -45,8 +45,9 @@ public class Target : MonoBehaviour
             if(gameManager.isGameActive&&!isBadObject)
             {
                 gameManager.Sound.PlayOneShot(gameManager.dieSound,1f);
+                gameManager.life-=1;
             }
-            gameManager.GameOver(isBadObject);
+            gameManager.GameOver(!isBadObject);
         }    
     }
     Vector3 RandomForce()
