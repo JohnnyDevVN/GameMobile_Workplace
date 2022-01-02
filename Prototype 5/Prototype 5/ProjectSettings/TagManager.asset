@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit
   - DeadZone
+  - BadObject
   layers:
   - Default
   - TransparentFX

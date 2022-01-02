@@ -43,12 +43,18 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     public GameObject gameOverScreen;
     public GameObject quitButton;
+    public List<ParticleSystem> explosionParticle;
     public int score;
     public AudioClip shootSound;
     public AudioClip dieSound;
+    public AudioClip crashSound;
     public AudioSource Sound;
     public bool isGameActive;
     private float spawnRate = 1f;
+    int randNum;
+    int num;
+    Target targetScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +65,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        randNum = Random.Range(1,4);
+        StartCoroutine(OnTapping());
         if(score<0) 
         {
             Debug.Log("Bad Score, Game Over!");
@@ -76,11 +84,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
+   private IEnumerator OnTapping ()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit) && (hit.collider.tag == "Unit" || hit.collider.tag == "BadObject"))
+        {
+            targetScript = hit.collider.GetComponent<Target>();
+            Vector3 spawnLocation = new Vector3 (hit.point.x, hit.point.y, hit.point.z);
+            UpdateScore(targetScript.pointValue);
+            Destroy(hit.collider.gameObject);
+            if(hit.collider.tag == "BadObject")
+            {
+                Instantiate(explosionParticle[0], spawnLocation, explosionParticle[0].transform.rotation);
+                Sound.PlayOneShot(crashSound,0.6f);
+            }
+            else if(hit.collider.tag == "Unit")
+            {
+                Sound.PlayOneShot(shootSound,1f);
+                Instantiate(explosionParticle[randNum], spawnLocation, explosionParticle[randNum].transform.rotation); 
+            }    
+        }
+        yield return null;
+    }
+
     public void UpdateScore(int scoreToAdd)
     {
+    //     if(target[num]==target[0])
+    //     {
+    //         scoreToAdd = -20;
+    //     }
+    //     else if(target[num]==target[1])
+    //     {
+    //         scoreToAdd = 3;
+    //     }
+    //     else if(target[num]==target[2])
+    //     {
+    //         scoreToAdd = 5;
+    //     }
+    //     else if(target[num]==target[3])
+    //     {
+    //         scoreToAdd = 8;
+    //     }
+
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
-
     }
 
     public void GameOver(bool isBad)

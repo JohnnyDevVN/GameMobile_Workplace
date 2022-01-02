@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' 3'
+  m_text: ' +3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' 8'
+  m_text: ' +8'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target:
   - {fileID: 2451425927434034973, guid: 108c8bcb641f0ae4f81df9ad21b648cf, type: 3}
-  - {fileID: 8444375471800587047, guid: f670980db7850fb43a54e49744795cb2, type: 3}
+  - {fileID: 2720475313213790776, guid: 1d95f6bc63bd19a4c89b2d9f0d5fa9fb, type: 3}
   - {fileID: 2934556548971524732, guid: 50fc51883a663f549a38617383b695bf, type: 3}
   - {fileID: 7204860634098266176, guid: 749a7e82a4d0f3b4a8e4445ea4206bf7, type: 3}
   scoreText: {fileID: 1483172498}
@@ -1348,9 +1348,15 @@ MonoBehaviour:
   titleScreen: {fileID: 1718148045}
   gameOverScreen: {fileID: 459502522}
   quitButton: {fileID: 0}
+  explosionParticle:
+  - {fileID: 4758139293545943008, guid: c7ad2532a6eeb40b59033c75e71fa054, type: 3}
+  - {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
+  - {fileID: 7303472089845130122, guid: 6cbc21f5e9162483993a2b84b14d5ac8, type: 3}
+  - {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
   score: 0
   shootSound: {fileID: 8300000, guid: 7d50ba001d35b2543953683746a86b47, type: 3}
   dieSound: {fileID: 8300000, guid: 235072249c6ad294a84c3876a063aefc, type: 3}
+  crashSound: {fileID: 8300000, guid: 4cbe1f8c9a977a246bd72edfc2d8efa7, type: 3}
   Sound: {fileID: 707121510}
   isGameActive: 0
 --- !u!4 &707121509
@@ -1365,7 +1371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &707121510
 AudioSource:
@@ -1601,7 +1607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Version: 0.1'
+  m_text: 'Version: 0.2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2793,7 +2799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' 5'
+  m_text: ' +5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3371,7 +3377,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1829648827}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3699,7 +3705,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904405044
 GameObject:
@@ -3962,7 +3968,7 @@ RectTransform:
   - {fileID: 635061814}
   - {fileID: 1072380702}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

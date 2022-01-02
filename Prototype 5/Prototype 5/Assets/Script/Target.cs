@@ -12,8 +12,7 @@ public class Target : MonoBehaviour
     private float ySpawnPos = -6f;
     public bool isBadObject;
     public int pointValue;
-
-    public ParticleSystem explosionParticle;
+    
 
     private GameManager gameManager;
     // Start is called before the first frame update
@@ -27,17 +26,17 @@ public class Target : MonoBehaviour
 
         transform.position = RandomSpawnPos();
     }
+    // void OnMouseDown()
+    // {   
+    //     if(gameManager.isGameActive)
+    //     {
+    //         gameManager.Sound.PlayOneShot(gameManager.shootSound,1f);
+    //         Destroy(gameObject);
+    //         Instantiate(gameManager.explosionParticle[1], transform.position, gameManager.explosionParticle[1].transform.rotation);
+    //         //gameManager.UpdateScore(pointValue);
+    //     }
+    // }
 
-    void OnMouseDown()
-    {   
-        if(gameManager.isGameActive)
-        {
-            gameManager.Sound.PlayOneShot(gameManager.shootSound,1f);
-            Destroy(gameObject);
-            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-            gameManager.UpdateScore(pointValue);
-        }
-    }
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("DeadZone"))
@@ -46,7 +45,6 @@ public class Target : MonoBehaviour
             if(gameManager.isGameActive&&!isBadObject)
             {
                 gameManager.Sound.PlayOneShot(gameManager.dieSound,1f);
-                //triggerDieSound=false;
             }
             gameManager.GameOver(isBadObject);
         }    

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3142202113063151791}
   m_Layer: 3
   m_Name: Bad 1
-  m_TagString: Unit
+  m_TagString: BadObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2451425927434034973}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.2, y: 3.62, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -127,4 +127,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBadObject: 1
   pointValue: -20
-  explosionParticle: {fileID: 4758139293545943008, guid: c7ad2532a6eeb40b59033c75e71fa054, type: 3}
